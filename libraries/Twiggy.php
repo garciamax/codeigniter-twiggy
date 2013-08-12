@@ -88,7 +88,12 @@ class Twiggy
 			foreach($this->_config['register_filters'] as $filter) $this->register_filter($filter);
 		}
 		
+		
 		$this->_twig->setLexer(new Twig_Lexer($this->_twig, $this->_config['delimiters']));
+		
+		if($this->_config['environment']['debug']){
+            		$this->_twig->addExtension(new Twig_Extension_Debug());
+        	}
 		
 		$this->_globals['title'] = NULL;
 		$this->_globals['meta'] = NULL;
